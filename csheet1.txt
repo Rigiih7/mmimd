@@ -1,0 +1,95 @@
+1. Create Database:
+sql
+Copy code
+CREATE DATABASE IF NOT EXISTS your_database_name;
+Replace your_database_name with the desired name for your database.
+
+2. Use Database:
+sql
+Copy code
+USE your_database_name;
+This command instructs MySQL to use the specified database.
+
+3. Create Table:
+sql
+Copy code
+CREATE TABLE IF NOT EXISTS your_table_name (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    column1 VARCHAR(255),
+    column2 INT,
+    column3 DATE
+);
+Replace your_table_name with the desired name for your table. This example table has three columns: column1 of type VARCHAR(255), column2 of type INT, and column3 of type DATE. The id column is an AUTO_INCREMENT primary key.
+
+Adjust the column names and data types according to your requirements.
+
+Here's a combined example:
+
+sql
+Copy code
+-- Create Database
+CREATE DATABASE IF NOT EXISTS your_database_name;
+
+-- Use Database
+USE your_database_name;
+
+-- Create Table
+CREATE TABLE IF NOT EXISTS your_table_name (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    column1 VARCHAR(255),
+    column2 INT,
+    column3 DATE
+);
+Run these queries in a MySQL client, or you can execute them using PHP if you are doing this programmatically.
+
+
+
+1. Create (Insert) Operation:
+To insert data into a table, you can use the INSERT INTO statement. Here's an example:
+
+php
+Copy code
+$sql = "INSERT INTO your_table_name (column1, column2, column3) VALUES ('value1', 'value2', 'value3')";
+if ($conn->query($sql) === TRUE) {
+    echo "Record inserted successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+2. Read Operation:
+For reading data, you can use the SELECT statement:
+
+php
+Copy code
+$sql = "SELECT column1, column2, column3 FROM your_table_name";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        // Process each row
+        echo "Column1: " . $row["column1"]. " - Column2: " . $row["column2"]. " - Column3: " . $row["column3"]. "<br>";
+    }
+} else {
+    echo "0 results";
+}
+3. Update Operation:
+To update existing records, you can use the UPDATE statement:
+
+php
+Copy code
+$sql = "UPDATE your_table_name SET column1='new_value1', column2='new_value2' WHERE condition";
+if ($conn->query($sql) === TRUE) {
+    echo "Record updated successfully";
+} else {
+    echo "Error updating record: " . $conn->error;
+}
+4. Delete Operation:
+For deleting records, use the DELETE statement:
+
+php
+Copy code
+$sql = "DELETE FROM your_table_name WHERE condition";
+if ($conn->query($sql) === TRUE) {
+    echo "Record deleted successfully";
+} else {
+    echo "Error deleting record: " . $conn->error;
+}
